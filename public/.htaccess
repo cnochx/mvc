@@ -1,0 +1,7 @@
+# Redirect to front controller
+RewriteEngine On
+# RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+# Dfine the Request, Responde and Next Parameter in the url
+RewriteRule ^([a-zA-Z]*)/?([a-zA-Z]*)?/?([a-zA-Z0-9]*)?/?$ index.php?req=$1&res=$2&next=$3 [NC,L]

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <title>{{ title }}</title>
+    {% endblock %}
+</head>
+<body>
+    {% block header %}
+        <h1>{{ title }}</h1>
+        <p>
+                Welcome on my awesome homepage (index).
+        </p>
+    {% endblock %}
+    {% block content %}{% endblock %}
+    {% block footer %}
+        made from Rudra Martin Grellmann with <3
+    {% endblock %}
+</body>
+</html>
