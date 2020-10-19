@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use Dotenv\Dotenv;
 use App\Controller;
 use App\Models\IndexModel;
 
@@ -29,7 +30,15 @@ class IndexController extends Controller
         $model->newPrep();
         // transfer the Parameter
         $this->setVars('query', $model->newPrep());
+
         $this->setVars('title', 'Yeah, Call Rudra');
+        $this->setVars('description', 'Yeah, Call Rudra');
+
+        $dotenv = Dotenv::createImmutable('../');
+        $dotenv->load();
+        $this->setVars('canoncial', $_ENV['ROOT']);
+
+
         // Render Twig
         $this->renderTwig();
     }
