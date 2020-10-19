@@ -3,4 +3,4 @@
 require(dirname(__DIR__) . '/vendor/autoload.php');
 
 // Run the Webapp
-(new App\Bootstrap($_GET))->run();
+(new App\Bootstrap())->run();

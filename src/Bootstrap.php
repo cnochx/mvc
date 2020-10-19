@@ -6,6 +6,7 @@ use Exception;
 
 class Bootstrap
 {
+    // Hold the $_GET Parameter as an array
     private $get = array();
 
     /**
@@ -14,9 +15,14 @@ class Bootstrap
      * defined Parameter req, res and next
      * @Results: Fill that $this->get
      */
-    public function __construct($get){
-        if(!empty($get)){
-            foreach ($get as $key => $value) {
+    public function __construct(){
+
+        if($_SERVER['QUERY_STRING'] === '')  {
+            $this->get['req'] = 'index';
+            $this->get['res'] = '';
+            $this->get['next'] = '';
+        } else {
+            foreach ($_GET as $key => $value) {
                 $value = trim($value);
                 switch ($key){
                     case 'req':
@@ -32,14 +38,8 @@ class Bootstrap
                     case 'next':
                         $this->get['next'] = $value;
                         break;
-                    default:
-                        unset($get[$key]);
                 }
             }
-        } else {
-            $this->get['req'] = 'index';
-            $this->get['res'] = '';
-            $this->get['next'] = '';
         }
     }
 
@@ -49,9 +49,8 @@ class Bootstrap
      */
     final public function run()
     {
-        /* Create the Router */
+        // Create the Router
         $router = new Routing($this->get);
         $router->execute();
-
     }
 }
