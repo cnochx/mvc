@@ -14,8 +14,13 @@ class TaskController extends Controller
 
     final public function renderA()
     {
-        $this->setVars('title', 'Yeah, Call Rudra -Task A');
+        $this->setVars('title', 'Aufgabe 1');
         $this->setVars('description', 'Yeah, Call Rudra');
+        $this->setVars('teaser', array(
+            'md'=> 'images/slide/php1x.jpg',
+            'dt'=> 'images/slide/php2x.jpg',
+            'lg'=> 'images/slide/php3x.jpg',
+        ));
 
         $dotenv = Dotenv::createImmutable('../');
         $dotenv->load();
@@ -28,8 +33,13 @@ class TaskController extends Controller
 
     final public function renderB()
     {
-        $this->setVars('title', 'Yeah, Call Rudra -Task B');
+        $this->setVars('title', 'Aufgabe 2 Teil A');
         $this->setVars('description', 'Yeah, Call Rudra');
+        $this->setVars('teaser', array(
+            'md'=> 'images/slide/nodejs1x.jpg',
+            'dt'=> 'images/slide/nodejs2x.jpg',
+            'lg'=> 'images/slide/nodejs3x.jpg',
+        ));
 
         $dotenv = Dotenv::createImmutable('../');
         $dotenv->load();
@@ -42,8 +52,14 @@ class TaskController extends Controller
 
     final public function renderC()
     {
-        $this->setVars('title', 'Yeah, Call Rudra -Task C');
+        $this->setVars('title', 'Aufgabe 2 Teil B');
         $this->setVars('description', 'Yeah, Call Rudra');
+
+        $this->setVars('teaser', array(
+            'md'=> 'images/slide/html1x.jpg',
+            'dt'=> 'images/slide/html2x.jpg',
+            'lg'=> 'images/slide/html3x.jpg',
+        ));
 
         $dotenv = Dotenv::createImmutable('../');
         $dotenv->load();

@@ -17,8 +17,13 @@ class AccountController extends Controller
 
     final public function renderRegister()
     {
-        $this->setVars('title', 'Yeah, Call Rudra');
+        $this->setVars('title', 'Register');
         $this->setVars('description', 'Yeah, Call Rudra');
+        $this->setVars('teaser', array(
+            'md'=> 'images/slide/mysql1x.jpg',
+            'dt'=> 'images/slide/mysql2x.jpg',
+            'lg'=> 'images/slide/mysql3x.jpg',
+        ));
 
         $dotenv = Dotenv::createImmutable('../');
         $dotenv->load();
@@ -31,8 +36,13 @@ class AccountController extends Controller
 
     final public function renderLogin()
     {
-        $this->setVars('title', 'Yeah, Call Rudra');
+        $this->setVars('title', 'Login');
         $this->setVars('description', 'Yeah, Call Rudra');
+        $this->setVars('teaser', array(
+            'md'=> 'images/slide/mysql1x.jpg',
+            'dt'=> 'images/slide/mysql2x.jpg',
+            'lg'=> 'images/slide/mysql3x.jpg',
+        ));
 
         $dotenv = Dotenv::createImmutable('../');
         $dotenv->load();
