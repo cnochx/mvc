@@ -1,8 +1,17 @@
 {% extends "html.html.twig" %}
 {% block content %}
-    <h2>{{ title }}</h2>
-    <p>
-        Welcome on my awesome homepage (index).
-    </p>
-    <p>{{ query.bezeichner }}</p>
+    <header>
+        <h1>{{ title }}</h1>
+    </header>
+    <main>
+        <article>
+            <p>
+                Welcome on my awesome homepage (index).
+            </p>
+        </article>
+    </main>
+    <aside>
+        <h2>{{ title }}</h2>
+        <p>{{ query.bezeichner }}</p>
+    </aside>
 {% endblock %}

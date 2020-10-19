@@ -1,21 +1,65 @@
 <!DOCTYPE html>
-<html lang="de">
+<html class="no-js" lang="De">
 <head>
-    {% block head %}
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
         <title>{{ title }}</title>
-    {% endblock %}
+        <meta name="description" content="{{ description }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta property="og:title" content="">
+        <meta property="og:type" content="">
+        <meta property="og:url" content="">
+        <meta property="og:image" content="">
+
+        <!-- generics -->
+        <link rel="icon" href="{{ canoncial }}/favicon/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="{{ canoncial }}/favicon/favicon-32.png" sizes="32x32">
+        <link rel="icon" href="{{ canoncial }}/favicon/favicon-57.png" sizes="57x57">
+        <link rel="icon" href="{{ canoncial }}/favicon/favicon-76.png" sizes="76x76">
+        <link rel="icon" href="{{ canoncial }}/favicon/favicon-96.png" sizes="96x96">
+        <link rel="icon" href="{{ canoncial }}/favicon/favicon-128.png" sizes="128x128">
+        <link rel="icon" href="{{ canoncial }}/favicon/favicon-192.png" sizes="192x192">
+        <link rel="icon" href="{{ canoncial }}/favicon/favicon-228.png" sizes="228x228">
+
+        <!-- Android -->
+        <link rel="shortcut icon" sizes="196x196" href=“{{ canoncial }}/favicon/favicon-196.png">
+
+        <!-- iOS -->
+        <link rel="apple-touch-icon" href="{{ canoncial }}/favicon/favicon-120.png" sizes="120x120">
+        <link rel="apple-touch-icon" href="{{ canoncial }}/favicon/favicon-152.png" sizes="152x152">
+        <link rel="apple-touch-icon" href="{{ canoncial }}/favicon/favicon-180.png" sizes="180x180">
+
+        <!-- Windows 8  IE 10-->
+        <meta name="msapplication-TileColor" content="#FFFFFF">
+        <meta name="msapplication-TileImage" content="{{ canoncial }}/favicon/favicon-144.png">
+
+        <!— Windows 8.1 + IE11 and above —>
+        <meta name="msapplication-config" content="{{ canoncial }}/favicon/browserconfig.xml" />
+
+        <link rel="stylesheet" href="css/vendor/normalize.css">
+        <link rel="stylesheet" href="css/vendor/main.css">
+        <link rel="stylesheet" href="css/theme.css">
+
+        <meta name="theme-color" content="#002752">
+
 </head>
 <body>
     {% block header %}
-        <h1>{{ title }}</h1>
-        <p>
-                Welcome on my awesome homepage (index).
-        </p>
+
+    {% endblock %}
+    {% block teaser %}
+
     {% endblock %}
     {% block content %}{% endblock %}
     {% block footer %}
-        made from Rudra Martin Grellmann with <3
+            <i class="fas fa-tools"></i> Handcrafted from Rudra Martin Grellmann with <i class="fas fa-heart"></i>
     {% endblock %}
+    {% block html_body_js_bottom %}
+       <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+
+    {% endblock html_body_js_bottom %}
 </body>
 </html>
