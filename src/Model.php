@@ -8,23 +8,32 @@ use PDOException;
 
 abstract class Model
 {
-    // Database Handle
+    // Hold the Dotenv-Class
+    protected $dotenv;
+    // Hold the complete Connect String with DSN
+    protected $connect;
+    // Hold the Database Handle
     protected $dbHandle;
-    // Database Statement
+    // Hold the Database Statement
     protected $dbStatement;
-
+    // Hold the bind Elements
     protected $bound = array();
 
     /**
-     * Model constructor, create the PDO
+     * Model constructor
      */
     public function __construct() {
-        // Integrate dotenv
-        $dotenv = Dotenv::createImmutable('../');
-        $dotenv->load();
-        // data source name
-        $dsn = 'mysql:host='.$_ENV['DB_HOST'].';port='.$_ENV['DB_PORT'].';dbname='.$_ENV['DB_NAME'].';charset=utf8';
-        // Set a PDO::attribute to PDO
+        $this->setDotenv();
+    }
+    /**
+     * @result (void) Set the Dotenv-Class
+     */
+    public function setDotenv()
+    {
+        $this->dotenv = Dotenv::createImmutable('../');
+    }
+
+    protected function optionsPDO() {
         $options = array();
         $options[PDO::ATTR_DEFAULT_FETCH_MODE] = PDO::FETCH_OBJ;
         $options[PDO::ATTR_ORACLE_NULLS] = PDO::NULL_EMPTY_STRING;
@@ -34,9 +43,19 @@ abstract class Model
         } else {
             $options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_SILENT;
         }
-        // create PDO
+        return $options;
+    }
+
+    /**
+     * @param $dsn
+     * @param $user
+     * @param $pass
+     * @param $options
+     * @result (void)
+     */
+    protected function doPDO($dsn, $user, $pass, $options) {
         try {
-            $this->dbHandle = new PDO($dsn, $_ENV['DB_USER'], $_ENV['DB_PASS'], $options);
+            $this->dbHandle = new PDO($dsn, $user, $pass, $options);
         } catch (PDOException $e) {
             if($_ENV['ENV'] !== 'Dev') {
                 $message = new Mssg;
@@ -51,7 +70,7 @@ abstract class Model
      * Prepare the query
      * @param $sql (String) The Query Parameter
      */
-    public function prepareQuery($sql) {
+    protected function prepareQuery($sql) {
         $this->dbStatement = $this->dbHandle->prepare($sql);
     }
 
@@ -62,7 +81,7 @@ abstract class Model
      * @param $type (constant) Explicit data type for the parameter using the PDO::PARAM_* constants default is the value NULL
      * @noinspection CallableParameterUseCaseInTypeContextInspection
      */
-    public function bind($param, $value, $type = false)
+    protected function bind($param, $value, $type = false)
     {
         if ($type === false) {
             switch (true) {
@@ -93,7 +112,7 @@ abstract class Model
      * $bind[':id']['type'] = false;
      * @result (void) loop trough to $this->bind
      */
-    public function prepareBind(array $array) {
+    protected function prepareBind(array $array) {
 
         $value = null;
         $type = false;
@@ -113,7 +132,7 @@ abstract class Model
     /**
      * Execute the PDO
      */
-    public function execute(){
+    protected function execute(){
         $this->dbStatement->execute();
     }
 
@@ -125,7 +144,7 @@ abstract class Model
      * $bind[':id']['type'] = false;
      * @return mixed An Array with all the results from the Query
      */
-    final public function resultsArr($sql, array $bind)
+    final protected function resultsArr($sql, array $bind)
     {
         $this->prepareQuery($sql);
         $this->prepareBind($bind);
@@ -139,9 +158,9 @@ abstract class Model
      * example for that array:
      * $bind[':id']['value'] = 2;
      * $bind[':id']['type'] = false;
-     * @return mixed A Single array with all the results from the Query
+     * @return mixed A Single array with the (first) results from the Query
      */
-    final public function resultsSingle($sql, array $bind)
+    final protected function resultsArrSingle($sql, array $bind)
     {
         $this->prepareQuery($sql);
         $this->prepareBind($bind);
@@ -155,9 +174,24 @@ abstract class Model
      * example for that array:
      * $bind[':id']['value'] = 2;
      * $bind[':id']['type'] = false;
+     * @return mixed An Obj with the (first) results from the Query
+     */
+    final protected function resultsObj($sql, array $bind)
+    {
+        $this->prepareQuery($sql);
+        $this->prepareBind($bind);
+        $this->execute();
+        return $this->dbStatement->fetchAll(PDO::FETCH_OBJ);
+    }
+    /**
+     * @param $sql (string) The SQL String
+     * @param array $bind (mixed) An Array to bind to avoid sql injection
+     * example for that array:
+     * $bind[':id']['value'] = 2;
+     * $bind[':id']['type'] = false;
      * @return mixed An Obj with all the results from the Query
      */
-    final public function resultsObj($sql, array $bind)
+    final protected function resultsObjSingle($sql, array $bind)
     {
         $this->prepareQuery($sql);
         $this->prepareBind($bind);
@@ -171,7 +205,7 @@ abstract class Model
      * @return (string )Returns the ID of the last inserted row
      * @noinspection PhpDocSignatureInspection
      */
-    public function lastInsertId(){
+    protected function lastInsertId(){
         return $this->dbHandle->lastInsertId();
     }
 }
