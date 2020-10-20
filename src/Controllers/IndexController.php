@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Dotenv\Dotenv;
 use App\Controller;
-use App\Models\IndexModel;
+use App\Models\TaskBIIModel;
 
 
 class IndexController extends Controller
@@ -24,12 +24,8 @@ class IndexController extends Controller
      */
     final public function render()
     {
-        // Integrate IndexModel
-        $model = new IndexModel();
-        // Integrate the queries
-        $model->newPrep();
+
         // transfer the Parameter
-        $this->setVars('query', $model->newPrep());
 
         $this->setVars('title', 'Yeah, Call Rudra');
         $this->setVars('description', 'Yeah, Call Rudra');

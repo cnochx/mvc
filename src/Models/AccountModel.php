@@ -3,7 +3,6 @@
 
 namespace App\Models;
 
-
 use App\Model;
 
 class AccountModel extends Model
