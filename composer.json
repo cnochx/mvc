@@ -1,6 +1,6 @@
 {
-    "name": "cnochx/oso_blanco",
-    "description": "Website for Betatesting",
+    "name": "cnochx/mvc",
+    "description": "MVC as Example",
     "type": "library",
     "require": {
         "vlucas/phpdotenv": "^5.2",
