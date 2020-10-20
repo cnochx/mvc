@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controller;
+use App\Models\TaskAModel;
 use Dotenv\Dotenv;
 
 class TaskController extends Controller
@@ -14,6 +15,11 @@ class TaskController extends Controller
 
     final public function renderA()
     {
+        // Integrate TaskBIIModel
+        $model = new TaskAModel();
+        // Integrate the queries
+        $results = $model->getTaskResults();
+
         $this->setVars('title', 'Aufgabe 1');
         $this->setVars('description', 'Yeah, Call Rudra');
         $this->setVars('teaser', array(
