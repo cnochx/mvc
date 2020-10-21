@@ -147,7 +147,9 @@ abstract class Model
     final protected function resultsArr($sql, array $bind)
     {
         $this->prepareQuery($sql);
-        $this->prepareBind($bind);
+        if(empty($bind)) {
+            $this->prepareBind($bind);
+        }
         $this->execute();
         return $this->dbStatement->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -163,7 +165,9 @@ abstract class Model
     final protected function resultsArrSingle($sql, array $bind)
     {
         $this->prepareQuery($sql);
-        $this->prepareBind($bind);
+        if(empty($bind)) {
+            $this->prepareBind($bind);
+        }
         $this->execute();
         return $this->dbStatement->fetch(PDO::FETCH_ASSOC);
     }
@@ -179,7 +183,9 @@ abstract class Model
     final protected function resultsObj($sql, array $bind)
     {
         $this->prepareQuery($sql);
-        $this->prepareBind($bind);
+        if(empty($bind)) {
+            $this->prepareBind($bind);
+        }
         $this->execute();
         return $this->dbStatement->fetchAll(PDO::FETCH_OBJ);
     }
@@ -194,7 +200,9 @@ abstract class Model
     final protected function resultsObjSingle($sql, array $bind)
     {
         $this->prepareQuery($sql);
-        $this->prepareBind($bind);
+        if(empty($bind)) {
+            $this->prepareBind($bind);
+        }
         $this->execute();
         return $this->dbStatement->fetch(PDO::FETCH_OBJ);
     }

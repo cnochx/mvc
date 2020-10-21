@@ -1,10 +1,35 @@
 body {
-    background-color: #ebe8de;
+    background-color: #D3D2C7;
 }
+
 
 .fa-heart {
     color: #8b0000;
 }
 .fa-tools {
     color: #002752;
+}
+
+article header {
+    border-top: 1px solid rgba(0,0,0,.125);
+}
+article:first-child header {
+    border: none;
+}
+article header h2 {
+
+}
+aside header {
+    background-color: #ebe8de;
+    -webkit-box-shadow: inset 12px 12px 5px 0px rgba(235,232,222,1);
+    -moz-box-shadow: inset 12px 12px 5px 0px rgba(235,232,222,1);
+    box-shadow: inset 12px 12px 5px 0px rgba(235,232,222,1);
+    border: 1px solid rgba(0,0,0,.125);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+body aside ul.list-group li.list-group-item {
+    background-color: #ebe8de;
 }

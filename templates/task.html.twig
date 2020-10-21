@@ -1,35 +1,62 @@
 {% extends "html.html.twig" %}
+
 {% block teaser %}
     <section id="teaser" class="container-fluid">
-        <div class="carousel slide" data-ride="carousel">
-            <figure class="carousel-inner">
-                <img src=" {{ teaser.md }}" srcset=" {{ teaser.dt }} 2x,  {{ teaser.lg }} 3x" class="img-fluid" alt="{{ title }}">
-            </figure>
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <figure class="carousel-item active">
+                    <img src=" {{ teaser.md }}" srcset=" {{ teaser.dt }} 2x,  {{ teaser.lg }} 3x" class="d-block w-100" alt="{{ title }}">
+                </figure>
+            </div>
         </div>
     </section>
 {% endblock %}
 {% block content %}
     <div class="container">
-        <header class="row">
-            <h1>{{ title }}</h1>
+        <header class="row mt-2 mb-2 py-4">
+            <h1 class="display-3">{{ title }}</h1>
         </header>
+    </div>
+    <div class="container">
         <div class="row">
             <main class="col-lg-9">
-                <article>
-                    <header>
-                        <h2>Title of that Tasks</h2>
-                    </header>
-                    <p>
-                        The Results
-                    </p>
-                    <footer>
-                        <p>Downlaodible Result</p>
-                    </footer>
-                </article>
+                {% for row in results %}
+                    <article class="mb-3 card" id="task_{{ row.id }}">
+                        <header class="card-header">
+                            <h2>{{ row.title }}</h2>
+                        </header>
+                        <div class="card-body">
+                            <blockquote>
+                                <p>{{ row.description}}</p>
+                            </blockquote>
+                            <code>
+                                {{ row.result }}
+                            </code>
+                            {% if row.link %}
+                                <p><a href="{{ row.link }}" class="" title="{{ row.description }}">{{ row.linktext }}</a></p>
+                            {% endif %}
+                            {% if row.img1x or row.img2x or row.img3x %}
+                                <figure class="mx-5">
+                                    <img class="img-fluid" src="{{ row.img1x }}" srcset="{{ row.img2x }} 2x, {{ row.img3x }} 3x" title="{{ row.title }}" />
+                                    <figcaption>{{ row.title }} (Aufgabe {{ row.id }})</figcaption>
+                                </figure>
+                            {% endif %}
+                            {% if row.exampleId %}
+                                <code>{{ row.exampleId }}</code>
+                            {% endif %}
+                        </div>
+                    </article>
+                {% endfor %}
             </main>
             <aside class="col-lg-3">
-                <h4>List of something</h4>
-                <p></p>
+                <header class="mt-2 mb-1 pt-2 pb-1 px-3">
+                    <h4>Aufgaben</h4>
+                </header>
+                {% for row in results %}
+                    <ul class="list-group">
+                        <li class="list-group-item mt-1 mt-1">{{ row.id }}) {{ row.title }}</li>
+                    </ul>
+                {% endfor %}
             </aside>
         </div>
     </div>
