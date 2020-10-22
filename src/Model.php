@@ -147,7 +147,7 @@ abstract class Model
     final protected function resultsArr($sql, array $bind)
     {
         $this->prepareQuery($sql);
-        if(empty($bind)) {
+        if(!empty($bind)) {
             $this->prepareBind($bind);
         }
         $this->execute();
@@ -165,7 +165,7 @@ abstract class Model
     final protected function resultsArrSingle($sql, array $bind)
     {
         $this->prepareQuery($sql);
-        if(empty($bind)) {
+        if(!empty($bind)) {
             $this->prepareBind($bind);
         }
         $this->execute();
@@ -183,7 +183,7 @@ abstract class Model
     final protected function resultsObj($sql, array $bind)
     {
         $this->prepareQuery($sql);
-        if(empty($bind)) {
+        if(!empty($bind)) {
             $this->prepareBind($bind);
         }
         $this->execute();
@@ -200,7 +200,7 @@ abstract class Model
     final protected function resultsObjSingle($sql, array $bind)
     {
         $this->prepareQuery($sql);
-        if(empty($bind)) {
+        if(!empty($bind)) {
             $this->prepareBind($bind);
         }
         $this->execute();

@@ -13,12 +13,23 @@ class TaskController extends Controller
         $this->setTemplate('task');
     }
 
+    public function prepareExampleQuery($results)
+    {
+        $print = null;
+        foreach ($results as $key=>$value){
+            if($key === 'exampleId' && $value !== null) {
+                $print = $value;
+            }
+        }
+        return $print;
+    }
+
     /**
      * Render the Controller for page aufgabe_a
      */
     final public function renderA()
     {
-        // Integrate TaskBIIModel
+        // Integrate TaskModel
         $model = new TaskModel();
         // Integrate the queries
         $results = $model->getResultsA();
@@ -46,15 +57,16 @@ class TaskController extends Controller
      */
     final public function renderB()
     {
-       // Integrate TaskBIIModel
+       // Integrate TaskModel
         $model = new TaskModel();
-        // Integrate the queries
-        $results = $model->getResultsB();
-
-
-
+        // get example ID
+        foreach ($model->getResultsB() as $key=>$value) {
+            if($this->prepareExampleQuery($value)) {
+                $model->getExampleQuery($this->prepareExampleQuery($value));
+            }
+        }
         // Transfer the results
-        $this->setVars('results', $results);
+        $this->setVars('results', $model->getResultsB());
 
         $this->setVars('title', 'MySQL Aufgabe 2, Teil A');
         $this->setVars('description', 'Yeah, Call Rudra');
@@ -77,12 +89,16 @@ class TaskController extends Controller
      */
     final public function renderC()
     {
-        // Integrate TaskBIIModel
+        // Integrate TaskModel
         $model = new TaskModel();
-        // Integrate the queries
-        $results = $model->getResultsC();
+        // get example ID
+        foreach ($model->getResultsC() as $key=>$value) {
+            if($this->prepareExampleQuery($value)) {
+                $model->getExampleQuery($this->prepareExampleQuery($value));
+            }
+        }
         // Transfer the results
-        $this->setVars('results', $results);
+        $this->setVars('results', $model->getResultsC());
 
         $this->setVars('title', 'Aufgabe 2 Teil B');
         $this->setVars('description', 'Yeah, Call Rudra');
@@ -101,4 +117,5 @@ class TaskController extends Controller
         // Render Twig
         $this->renderTwig();
     }
+
 }

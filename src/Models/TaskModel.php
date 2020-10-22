@@ -5,7 +5,7 @@ namespace App\Models;
 
 class TaskModel extends MVCModel
 {
-    public function getResultsA()
+    final public function getResultsA()
     {
         $sql = 'SELECT 
             dispatcher.id AS id, 
@@ -28,21 +28,12 @@ class TaskModel extends MVCModel
             ORDER BY dispatcher.id ASC';
 
             // bind the Value to the Database field at that type
-            $bind = array(
-//              ':id'=>array(
-//                  'value' => 1,
-//                  'type' => false
-//              )
-            );
-        $this->resultsObj($sql, $bind);
-
-
-
+            $bind = array();
 
         return $this->resultsObj($sql, $bind);
     }
 
-    public function getResultsB()
+    final public function getResultsB()
     {
         $sql = 'SELECT 
             dispatcher.id AS id, 
@@ -65,21 +56,12 @@ class TaskModel extends MVCModel
             ORDER BY dispatcher.id ASC';
 
         // bind the Value to the Database field at that type
-        $bind = array(
-//              ':id'=>array(
-//                  'value' => 1,
-//                  'type' => false
-//              )
-        );
-        $this->resultsObj($sql, $bind);
-
-
-
+        $bind = array();
 
         return $this->resultsObj($sql, $bind);
     }
 
-    public function getResultsC()
+    final public function getResultsC()
     {
         $sql = 'SELECT 
             dispatcher.id AS id, 
@@ -102,17 +84,23 @@ class TaskModel extends MVCModel
             ORDER BY dispatcher.id ASC';
 
         // bind the Value to the Database field at that type
-        $bind = array(
-//              ':id'=>array(
-//                  'value' => 1,
-//                  'type' => false
-//              )
-        );
-        $this->resultsObj($sql, $bind);
-
-
-
+        $bind = array();
 
         return $this->resultsObj($sql, $bind);
+    }
+
+    final public function getExampleQuery($id) {
+
+        $sql ='SELECT example FROM results_query WHERE id=:id';
+
+        $bind = array(
+            ':id' => array(
+                'value' => $id,
+                'type' => false
+            )
+        );
+
+        $example = $this->resultsArrSingle($sql, $bind);
+        return $example['example'];
     }
 }
