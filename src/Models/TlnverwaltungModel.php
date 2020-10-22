@@ -1,10 +1,10 @@
 <?php
 
-
 namespace App\Models;
 
+use App\Model;
 
-class Tlnverwaltung extends \App\Model
+class TlnverwaltungModel extends Model
 {
     public function __construct()
     {

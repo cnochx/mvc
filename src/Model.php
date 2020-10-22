@@ -1,4 +1,6 @@
-<?php
+<?php /** @noinspection ALL */
+
+/** @noinspection PhpUnused */
 
 namespace App;
 
@@ -10,14 +12,10 @@ abstract class Model
 {
     // Hold the Dotenv-Class
     protected $dotenv;
-    // Hold the complete Connect String with DSN
-    protected $connect;
     // Hold the Database Handle
     protected $dbHandle;
     // Hold the Database Statement
     protected $dbStatement;
-    // Hold the bind Elements
-    protected $bound = array();
 
     /**
      * Model constructor

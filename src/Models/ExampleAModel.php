@@ -4,7 +4,7 @@
 namespace App\Models;
 
 
-class ExampleAModel extends Tlnverwaltung
+class ExampleAModel extends TlnverwaltungModel
 {
     final public function getQuery($id) {
         $sql = '';

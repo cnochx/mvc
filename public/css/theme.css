@@ -21,9 +21,9 @@ article header h2 {
 }
 aside header {
     background-color: #ebe8de;
-    -webkit-box-shadow: inset 12px 12px 5px 0px rgba(235,232,222,1);
-    -moz-box-shadow: inset 12px 12px 5px 0px rgba(235,232,222,1);
-    box-shadow: inset 12px 12px 5px 0px rgba(235,232,222,1);
+    -webkit-box-shadow: inset 12px 12px 5px 0 rgba(235,232,222,1);
+    -moz-box-shadow: inset 12px 12px 5px 0 rgba(235,232,222,1);
+    box-shadow: inset 12px 12px 5px 0 rgba(235,232,222,1);
     border: 1px solid rgba(0,0,0,.125);
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;

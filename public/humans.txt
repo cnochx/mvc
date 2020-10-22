@@ -3,7 +3,7 @@
 
 # TEAM
 
-    MArtin Grellmann -- Full Stack Wed-Developer -- https://twitter.com/call_rudra
+    Martin Grellmann -- Full Stack Wed-Developer -- https://twitter.com/call_rudra
 
 # THANKS
 

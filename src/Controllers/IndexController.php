@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use Dotenv\Dotenv;
 use App\Controller;
-use App\Models\TaskBIIModel;
 
 
 class IndexController extends Controller

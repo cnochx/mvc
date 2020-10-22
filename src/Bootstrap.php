@@ -2,7 +2,6 @@
 
 namespace App;
 
-use lessc;
 
 class Bootstrap
 {
@@ -49,10 +48,6 @@ class Bootstrap
      */
     final public function run()
     {
-        /*$less = new lessc;
-        $less->checkedCompile("../input.less", "output.css");*/
-
-
         // Create the Router
         $router = new Routing($this->get);
         $router->execute();
