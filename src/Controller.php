@@ -87,7 +87,7 @@ class Controller
 
     /**
      * Get the filename of the template with extension
-     * @return (string) the filename of the template
+     * @return string (string) the filename of the template
      */
     public function getTemplate(){
         return $this->template.'.html.twig';

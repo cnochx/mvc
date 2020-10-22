@@ -1,17 +1,91 @@
 {% extends "html.html.twig" %}
+
+{% block teaser %}
+    <section id="teaser" class="container-fluid">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <figure class="carousel-item active">
+                    <img src=" {{ teaser.md }}" srcset=" {{ teaser.dt }} 2x,  {{ teaser.lg }} 3x" class="d-block w-100" alt="{{ title }}">
+                </figure>
+            </div>
+        </div>
+    </section>
+{% endblock %}
 {% block content %}
-    <header>
-        <h1>{{ title }}</h1>
-    </header>
-    <main>
-        <article>
-            <p>
-                Welcome on my awesome homepage (index).
-            </p>
-        </article>
-    </main>
-    <aside>
-        <h2>{{ title }}</h2>
-        <p>more</p>
-    </aside>
+    <div class="container">
+        <header class="row mt-2 mb-2 py-4">
+            <h1 class="display-3">{{ title }}</h1>
+        </header>
+    </div>
+    <div class="container">
+        <div class="row">
+            <main class="col-lg-9">
+                {% for row in results %}
+                    <article class="mb-3 card" id="task_{{ row.id }}">
+                        <header class="card-header">
+                            <h2>{{ row.title }}</h2>
+                        </header>
+                        <div class="card-body">
+                            <p>{{ row.description}}</p>
+                            <h3>SQL Statements</h3>
+                            <code>
+                                {{ row.result }}
+                            </code>
+                            {# integrate Results from SQL-Statement, if exist #}
+                            {% if row.example is not null %}
+                                <h4 class="pt-3">Die Ergebnisse vom SQL-Statement</h4>
+                                <div class="table-responsive">
+                                    {% set example = row.example %}
+                                    <table class="table table-hover">
+                                        {# get the first item from the array #}
+                                        {% set table_header = example|first %}
+                                        <thead>
+                                        <tr>
+                                            {# loop the keys, get the name of the key of the array and print it #}
+                                            {% for property_title in table_header|keys %}
+                                                <th scope="col">{{ property_title }}</th>
+                                            {% endfor %}
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {# loop the array again #}
+                                        {% for item in example %}
+                                            <tr>
+                                                {# get the value of the array and print it #}
+                                                {% for field in table_header|keys %}
+                                                    <td>{{ attribute(item, field) }}</td>
+                                                {% endfor %}
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {% endif %}
+                            {# integrate link, if exist #}
+                            {% if row.link %}
+                                <p><a href="{{ row.link }}" class="" title="{{ row.description }}">{{ row.linktext }}</a></p>
+                            {% endif %}
+                            {# integrate image, if exist #}
+                            {% if row.img1x or row.img2x or row.img3x %}
+                                <figure class="mx-5">
+                                    <img class="img-fluid" src="{{ row.img1x }}" srcset="{{ row.img2x }} 2x, {{ row.img3x }} 3x" alt="{{ row.title }}" />
+                                    <figcaption>{{ row.title }} (Aufgabe {{ row.id }})</figcaption>
+                                </figure>
+                            {% endif %}
+                        </div>
+                    </article>
+                {% endfor %}
+            </main>
+            <aside class="col-lg-3">
+                <header class="mt-2 mb-1 pt-2 pb-1 px-3">
+                    <h4>Aufgaben</h4>
+                </header>
+                {% for row in results %}
+                    <ul class="list-group">
+                        <li class="list-group-item mt-1 mt-1">{{ row.id }}) {{ row.title }}</li>
+                    </ul>
+                {% endfor %}
+            </aside>
+        </div>
+    </div>
 {% endblock %}
