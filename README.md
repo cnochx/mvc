@@ -1,5 +1,5 @@
 # mvc
-Ein Simples MVC in PHP in Objektorientierter Programmierung. 
+Ein simples MVC in PHP in Objektorientierter Programmierung. 
 
 Zum Nachstellen wird benötigt:
 Die drei beiliegenden Datenbanken, im Ordner /databases zu finden.
