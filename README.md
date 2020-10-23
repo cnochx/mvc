@@ -13,10 +13,11 @@ Benutz werden lediglich:
 * twig/twig (https://github.com/twigphp/Twig)
 
 Außer 
-* modernizer
-* Bootstrap
-* fontawesome
-* und die Files von HTML5 Boilerplate empfohlen werden keine weitere Bibliotheken benutzt.
+* modernizer (https://modernizr.com)
+* Bootstrap (https://getbootstrap.com)
+* fontawesome (https://fontawesome.com)
+* und die Files, wie von HTML5 Boilerplate (https://html5boilerplate.com) empfohlen. 
+Weiter werden keine weitere Bibliotheken benutzt.
 
 #### Die App ist folgenderweise aufgebaut:
 Die `/.htacces` im Root verweist auf `/public`, welches die Ordner und Files enthält, die vom Browser aufgerufen und benötigt werden. Die `/public/index.php` ist die ausführende Datei und verweist auf Bootstrap. Dessen Konstruktor holt die Parameter, die in `/public/.htacces` definiert sind, und legt sie in `$this→get` ab Die Module greifen auf den Parameter zu. `/public/.htacces` schreibt auch die url um, so dass die eine Url wie `localhost/aufgabe_a` möglich ist.
