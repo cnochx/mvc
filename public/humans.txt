@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Martin Grellmann -- Full Stack Wed-Developer -- https://twitter.com/call_rudra
+
+# THANKS
+
+    Everyting
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, PHP, jQuery, Modernizr, Normalize.css
