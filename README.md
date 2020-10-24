@@ -6,7 +6,7 @@ Die drei beiliegenden Datenbanken, im Ordner /databases zu finden.
 * mvc.sql (enthält die Datenbank zum Anzeigen der Statements)
 * projektverwaltung.sql (enthält die Datenbank für die Ergebnisse der Statements, Aufgabe 1)
 * tlnverwaltung.sql (enthält die Datenbank für die Ergebnisse der Statements, Aufgabe 2)
-Des weiteren muß eine `.env` angelegt werden. Es reicht dafür das Umbenennen der `.example.env` in `.env` mit den entsprechenden Zugängen zu den Datenbanken. Zusätzlich muß der Composer im Terminal mit `composer update` aufgerufen werden, um die Bibliotheken zu laden und in den autoload psr-4 die Definition des Namespace der App zu hinterlegen. 
+Des weiteren muß eine `.env` angelegt werden. Es reicht dafür das Umbenennen der `.example.env` in `.env` mit den entsprechenden Zugängen zu den Datenbanken. Zusätzlich muß die `composer.json` im Terminal mit `composer update` ausgeführt werden, um die Bibliotheken zu laden und in den autoload psr-4 die Definition des Namespace der App zu hinterlegen. 
 Benutz werden lediglich:
 * vlucas/phpdotenv (https://github.com/vlucas/phpdotenv)
 * ext-pdo
