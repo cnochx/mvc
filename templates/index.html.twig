@@ -37,11 +37,67 @@
         <main>
             <section>
                 <header>
-                    <h2></h2>
+                    <h2>mvc</h2>
                 </header>
-                <p class="important">
-                    Wilkommen. wie geht's Dir?
-                    Hier ist eine supercoole Homepage auf einem fabelhaften MVC Framework.
+                <h3>Ein simples MVC in PHP in Objektorientierter Programmierung.</h3>
+
+                <h4>Zum Nachstellen wird benötigt:</h4>
+                <p>Die drei beiliegenden Datenbanken, im Ordner <code>/databases</code> zu finden.
+                    <ul>
+                        <li>mvc.sql (enthält die Datenbank zum Anzeigen der Statements)</li>
+                        <li>projektverwaltung.sql (enthält die Datenbank für die Ergebnisse der Statements, Aufgabe 1)</li>
+                        <li>tlnverwaltung.sql (enthält die Datenbank für die Ergebnisse der Statements, Aufgabe 2)</li>
+                </ul></p>
+                <p>Des weiteren muß eine <code>.env</code> angelegt werden. Es reicht dafür das Umbenennen der
+                    <code>.example.env</code> in <code>.env</code> mit den entsprechenden Zugängen zu den Datenbanken.
+                    Zusätzlich muß der <code>composer.json</code> im Terminal mit <code>composer update</code> ausgeführt
+                    werden, um die Bibliotheken zu laden und in dem autoload psr-4 die Definition des Namespace der App
+                    zu hinterlegen.<br>
+                    Benutzt werden lediglich:
+                <ul>
+                    <li>vlucas/phpdotenv (<a href="https://github.com/vlucas/phpdotenv" title="vlucas/phpdotenv">https://github.com/vlucas/phpdotenv</a>)</li>
+                    <li>ext-pdo</li>
+                    <li>twig/twig (<a href="https://github.com/twigphp/Twig" title="twig/twig">https://github.com/twigphp/Twig</a>)</li>
+                </ul>
+                    Außer
+                <ul>
+                    <li>modernizer (<a href="https://modernizr.com" title="modernizer">https://modernizr.com)</a></li>
+                    <li>Bootstrap (<a href="https://getbootstrap.com" title="Bootstrap">https://getbootstrap.com)<</a>/li>
+                    <li>fontawesome (<a href="https://fontawesome.com" title="Fontawesome">https://fontawesome.com</a></li>
+                    <li>und die Files, wie von HTML5 Boilerplate (<a href="https://html5boilerplate.com" title="Html 5 Boilerplate">https://html5boilerplate.com</a>) empfohlen</li>
+                </ul>
+                Weiter werden keine weitere Bibliotheken benutzt.</p>
+
+                <h4>Die App ist folgenderweise aufgebaut</h4>
+                <p>Die <code>/.htacces</code> im Root verweist auf <code>/public</code>, welches die Ordner und Files enthält, die vom Browser
+                    aufgerufen und benötigt werden. Die <code>/public/index.php</code> ist die ausführende Datei und verweist auf Bootstrap.
+                    Dessen Konstruktor holt die Parameter, die in <code>/public/.htacces</code> definiert sind, und legt sie in
+                    <code>$this→get</code> ab Die Module greifen auf den Parameter zu. <code>/public/.htacces</code> schreibt
+                    auch die url um, so dass die eine Url wie <code>localhost/aufgabe_a</code> möglich ist.
+                    <code>$this→run()</code> führt die Datei aus, und integriert den Router mit den Parameter <code>$get</code>.
+                    Der <code>Router</code> zerteilt den Parameter in <code>res</code>, <code>req</code> und <code>next</code>,
+                    hinterlegt den jeweiligen intanzierten Kontroller zu dem hinterlegten <code>request</code>, der erste
+                    Parameter in der url. Der Router prüft auch, ob der instanierte Kontroller existiert und integriert
+                    <code>Mssg</code>, welches Meldungen verwaltet. Dort wird dann, der Header 404 und auf <code>/templates/404.html</code>
+                    verwiesen. Der vom <code>Router</code> instanzierte <code>Routing</code> definiert lediglich die entsprechenden <code>req</code>
+                    mit dem entsprechenden <code>callable closure</code> wie <code>IndexController</code> oder <code>TaskController</code>.
+                    Existiert ein instanzierter Kontroller, wie <code>Indexcontroller</code> oder <code>Taskcontroller</code>,
+                    wird die Website mit den hinterlegten Variablen und den im Basiscontroller definierten Twig mit Environment
+                    und Extensions aufgerufen. <code>Indexcontroller</code> und <code>TaskController</code> enthalten auch
+                    den Namen des in <code>/templates/</code> enthaltenden template. <code>index.html.twig</code> und
+                    <code>task.html.twig</code> beschreiben nur die Blöcke Content und Teaser, <code>html.html.twig</code>
+                    enthält alle anderen Elemente der des Html. Der instanzierte Kontroller integriert das instanzierte <code>Model</code>.</p>
+                <p>Das Basis - <code>Model</code>, eine abstrakte Klasse enthält alles Einstellungen für den mysql-verbindung
+                    mit <code>PDO</code>. Die instazierten Klassen <code>MVCModel</code>, <code>ProjektverwaltungsModel</code>
+                    und <code>TlnverwaltungsModel</code> definieren die Zugangsdaten, die in <code>.env</code> hinterlegt sind.
+                    Diese werden, je nach Verbindung mit der jeweiligen Datenbank entsprechend instanziert und defieren die
+                    jeweiligen Statements der Datenbanken. <code>Model</code> gibt die Resultate in Array, Array Single,
+                    Objekt oder Objekt Single, welche von <code>TaskController</code> verarbeitet werden.</p>
+                <p>Im TaskController` wird auch das als Objekt vorliegende Result mit einem Statement zu einer anderen Datenbank verarbeitet und in der Eigenschaft `$taskResults→example` als Array mit dem Ergebnissen der tatsächlichen Statement hinterlegt. `$taskResults→example` enthält entweder einen Nullwert oder eine Fremdschlüssel, der das Statement zu der Abfrage enthält.
+                    <code>task.html.twig</code> schleift die Resultat entsprechend formatiert aus und stellt sie im Browser dar.</p>
+                <p><Fragen? Anmerkungen?<br />
+                <a href="mailto:martin@grellmann.eu" title="martin@grellmann.eu"></a></p>
+
                 </p>
             </section>
         </main>
